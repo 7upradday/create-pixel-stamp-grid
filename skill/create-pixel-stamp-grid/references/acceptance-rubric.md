@@ -17,7 +17,9 @@ Reject or revise the earliest stage that fails.
 - Pixels are square and consistently sized.
 - No antialiased or semi-transparent edge remains inside flat tiles.
 - Subject readability survives thumbnail viewing.
-- Shared palette creates cohesion while semantic accents remain recognizable.
+- Default preserve mode retains the generated tile colors without a dominant-hue cast.
+- Local mode keeps each tile's semantic accents recognizable.
+- Optional shared mode creates cohesion without shifting unrelated metals, skin, fur, water, food, whites, or neutral shadows toward the background hue.
 
 ## Layout
 
@@ -38,7 +40,7 @@ Reject or revise the earliest stage that fails.
 - The striped preset contains exactly 18 full-height vertical stripes.
 - Background colors are luminous macaron conversions of their recorded source families.
 - Background reads bright and fresh at thumbnail size, without mustard, ochre, gray-beige, or a low-contrast gray veil.
-- Colored tile midtones are gently freshened while skin, food, dark outlines, and white highlights remain credible.
+- Tile colors remain faithful to the accepted generated tiles; skin, fur, metal, water, food, dark outlines, and white highlights remain credible.
 - Vintage mottling is subtle and does not enter the white stamp border or tile content.
 - Background does not visually merge with the stamp border.
 

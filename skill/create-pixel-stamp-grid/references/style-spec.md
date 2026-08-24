@@ -23,13 +23,16 @@
 ## Color language
 
 - Extract colors from the four original inputs before generating tiles.
-- Build a shared palette plus a protected four-step ramp for the first dominant source hue. Keep the shared palette at the requested limit by reserving four slots for this ramp; preserve the darkest and lightest source-derived neutrals before filling the remaining slots.
+- Use the extracted dominant families for poster backgrounds, not as a mandatory tile palette.
+- Preserve generated tile colors by default. Do not add a second global color grade after image generation.
+- If a generated tile lacks a clean grid, quantize that tile locally to 32 colors. Keep local palettes independent so silver, aqua, pink, gold, skin, fur, and other semantic colors do not collapse into a dominant background hue.
+- Use shared quantization only when the user explicitly requests strong palette unification. Use at least 24 colors, reserve four slots for the primary ramp, and preserve the darkest and lightest source-derived neutrals.
 - Rank chromatic hue families by normalized pixel coverage across all four images plus cross-image support. Ignore near-white, very dark, and nearly neutral pixels for background ranking.
 - Select two perceptually distinct families. Use the highest score as primary, then choose the highest remaining family whose representative hue is at least 45 degrees away; this prevents one yellow-green cluster from being counted as both yellow and green. If no qualifying source family exists, use the curated complementary fallback and record zero source support.
 - Convert pink, yellow, and sky blue to the curated high-value macaron pairs. For green and purple, preserve the representative source hue and construct the background dynamically: green uses HSV saturation/value `10%/98%` for the base and `28%/93%` for the accent; purple uses `10%/99%` and `24%/94%`. This prevents gray mint and gray lavender without making the poster dark.
-- Protect the first dominant hue inside tile content with four value steps. For green and purple, keep the darkest semantic step at no less than 42% saturation, then taper saturation toward the highlight. Do not apply this floor to skin, white surfaces, food, or neutral shadows; only the nearest palette mapping uses these reserved colors.
+- In optional shared mode, protect the first dominant hue with four value steps. Do not apply this protection to unrelated subjects; reject shared mode if metal, skin, fur, water, food, white surfaces, or neutral shadows visibly shift hue.
 - Keep background value very high. Use cream lemon rather than beige, lemon rather than mustard, sky rather than gray-blue, and mint rather than gray-green.
-- Freshen extracted content palettes at `0.8`: slightly raise saturation and value for chromatic midtones, make a smaller adjustment to skin and warm food colors, and preserve dark outlines and near-white highlights.
+- Freshen extracted palettes at `0.8` for analysis and optional shared mode only; do not apply that palette as a global grade in preserve mode.
 - Use low-frequency mottling at only 2–3 percent. Apply it only to the poster background and never allow it to create a gray veil.
 - Preserve skin in a plausible range and do not force it into decorative palette colors.
 - Use a dark neutral for separation when adjacent colors merge.

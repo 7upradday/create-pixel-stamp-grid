@@ -247,7 +247,9 @@ def merge_shared(palettes, limit):
 
 
 def draw_preview(per_image, shared, dominant, output):
-    width, swatch, margin = 960, 64, 24
+    swatch, margin = 64, 24
+    longest_row = max(len(colors) for colors in per_image + [shared])
+    width = max(960, 180 + longest_row * (swatch + 8) + margin)
     height = margin * 8 + swatch * 7
     canvas = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(canvas)
@@ -271,7 +273,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("images", nargs=4)
     parser.add_argument("--colors-per-image", type=int, default=8)
-    parser.add_argument("--shared-colors", type=int, default=16)
+    parser.add_argument("--shared-colors", type=int, default=24)
     parser.add_argument("--freshness", type=float, default=0.8, help="0 disables; 0.8 is the bright summer default")
     parser.add_argument("--json-out", required=True)
     parser.add_argument("--preview-out", required=True)

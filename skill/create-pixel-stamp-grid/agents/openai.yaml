@@ -1,4 +1,4 @@
 interface:
   display_name: "Pixel Stamp Grid"
-  short_description: "Make two source-colored pixel-stamp posters"
-  default_prompt: "Use $create-pixel-stamp-grid to transform these four photos into a primary-color polka-dot pixel-stamp poster and a secondary-color 18-stripe poster, with a grounded three-word English theme."
+  short_description: "Make two color-faithful pixel-stamp posters"
+  default_prompt: "Use $create-pixel-stamp-grid to transform these four photos into two pixel-stamp posters while preserving the original colors of each generated tile."
